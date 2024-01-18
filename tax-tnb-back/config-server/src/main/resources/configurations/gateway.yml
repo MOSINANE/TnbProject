@@ -1,0 +1,41 @@
+server:
+  port: 8222
+eureka:
+  client:
+    register-with-eureka: false
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: blog
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/blogs/**
+        - id: taxe
+          uri: http://localhost:8070
+          predicates:
+            - Path=/api/main/**
+        - id: auth
+          uri: http://localhost:8060
+          predicates:
+            - Path=/api/auth/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders: "*"
+            allowCredentials: true
+management:
+  tracing:
+    sampling:
+      probability: 1.0

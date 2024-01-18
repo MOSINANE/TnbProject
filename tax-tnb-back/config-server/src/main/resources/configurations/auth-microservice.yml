@@ -1,0 +1,39 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+server:
+  port: 8060
+spring:
+  application:
+    name: auth-microservice
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/jwt_security
+    username: postgres
+    password: azerty132541233
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  security:
+    jwt:
+      secretKey: P4inmZExW3eMSf+dbS0VaDRaRK/Iu7ZTWiCCOyNwnbQGhB4JS5oPdxELOns7YeU
+      expirationTime: 86400000
+      refresh-token:
+        expirationTime: 604800000
+  config:
+    prop-url: http://localhost:8222/api/main
+management:
+  tracing:
+    sampling:
+      probability: 1.0
