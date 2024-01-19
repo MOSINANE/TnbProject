@@ -3,3 +3,20 @@ spring:
     name: taxe-service
   config:
     import: optional:configserver:http://localhost:8888
+
+
+server:
+  port: 8070
+spring:
+  application:
+    name: taxe-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/taxe
+    username: postgres
+    password: azerty132541233
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
